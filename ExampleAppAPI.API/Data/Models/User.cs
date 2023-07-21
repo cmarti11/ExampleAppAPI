@@ -3,16 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExampleAppAPI.API.Data.Models
 {
-    public class Client
+    public class User
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
         [Required]
-        public string Dna { get; set; }
+        public string Password { get; set; }
+
+        public long RoleId { get; set; }
+
+        [ForeignKey("RoleId")]
+        public virtual UserRole Role { get; set; }
     }
+
 }

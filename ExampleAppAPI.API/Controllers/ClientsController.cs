@@ -7,11 +7,11 @@ namespace ExampleAppAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
+    public class ClientsController : ControllerBase
     {
         private readonly ExampleAppAPIAPIContext _context;
 
-        public ClientController(ExampleAppAPIAPIContext context)
+        public ClientsController(ExampleAppAPIAPIContext context)
         {
             _context = context;
         }
@@ -20,22 +20,22 @@ namespace ExampleAppAPI.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClient()
         {
-            if (_context.Client == null)
+            if (_context.Clients == null)
             {
                 return NotFound();
             }
-            return await _context.Client.ToListAsync();
+            return await _context.Clients.ToListAsync();
         }
 
         // GET: api/Clients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            if (_context.Client == null)
+            if (_context.Clients == null)
             {
                 return NotFound();
             }
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Clients.FindAsync(id);
 
             if (client == null)
             {
@@ -81,11 +81,11 @@ namespace ExampleAppAPI.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
-            if (_context.Client == null)
+            if (_context.Clients == null)
             {
                 return Problem("Entity set 'ExampleAppAPIAPIContext.Client'  is null.");
             }
-            _context.Client.Add(client);
+            _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetClient", new { id = client.Id }, client);
@@ -95,17 +95,17 @@ namespace ExampleAppAPI.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            if (_context.Client == null)
+            if (_context.Clients == null)
             {
                 return NotFound();
             }
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
             }
 
-            _context.Client.Remove(client);
+            _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -113,7 +113,7 @@ namespace ExampleAppAPI.API.Controllers
 
         private bool ClientExists(int id)
         {
-            return (_context.Client?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Clients?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
