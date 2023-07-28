@@ -1,11 +1,13 @@
 ﻿using ExampleAppAPI.API.Data;
 using ExampleAppAPI.API.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExampleAppAPI.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ClientsController : ControllerBase
     {
@@ -29,7 +31,7 @@ namespace ExampleAppAPI.API.Controllers
 
         // GET: api/Clients/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClient(int id)
+        public async Task<ActionResult<Client>> GetClient(long id)
         {
             if (_context.Clients == null)
             {
