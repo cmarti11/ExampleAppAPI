@@ -3,6 +3,7 @@ using ExampleAppAPI.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExampleAppAPI.API.Migrations
 {
     [DbContext(typeof(ExampleAppAPIAPIContext))]
-    partial class ExampleAppAPIAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20230809043047_renameLatitude")]
+    partial class renameLatitude
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
