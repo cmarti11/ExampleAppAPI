@@ -56,8 +56,11 @@ namespace ExampleAppAPI.API.Controllers
         {
             var clientDetail = new ClientDetailDto
             {
+                Id = client.Id,
                 Name = client.Name,
                 Dna = client.Dna,
+                Latitude = client.Latitude,
+                Longitude = client.Longitude,
                 Age = random.Next(15, 65),
                 Weight = random.Next(40, 120),
                 Height = random.Next(150, 210)
@@ -84,7 +87,7 @@ namespace ExampleAppAPI.API.Controllers
             // Calculate the percentage of life expectancy
             double percentage = (age / adjustedLifeExpectancy) * 100;
 
-            return percentage;
+            return Math.Round(percentage);
         }
 
         // PUT: api/Clients/5
